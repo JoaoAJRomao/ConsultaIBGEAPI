@@ -24,18 +24,16 @@ class MainActivity : AppCompatActivity() {
 
         val listaibge = ibgeService.getAllMesorregioes()
 
-//        listaibge.enqueue(ibgeCallbackHandler) //erro
+        listaibge.enqueue(ibgeCallbackHandler)
     }
 
     private val ibgeCallbackHandler = object:Callback<ListaMesorregiao>{
         override fun onFailure(call: Call<ListaMesorregiao>, t: Throwable) {
-
+            Log.i("Depuracao","Failure! We'll get'em next time")
         }
 
         override fun onResponse(call: Call<ListaMesorregiao>, response: Response<ListaMesorregiao>) {
-
+            Log.i("Depuracao",response.body().toString())
         }
-
     }
-
 }
