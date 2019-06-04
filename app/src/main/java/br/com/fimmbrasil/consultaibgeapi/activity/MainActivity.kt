@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private val ibgeCallbackHandler = object:Callback<ListaMesorregiao>{
         override fun onFailure(call: Call<ListaMesorregiao>, t: Throwable) {
-            Log.i("Depuracao","Failure! We'll get'em next time")
+            Log.i("Depuracao","Failure! We'll get'em next time: " + t.message)
         }
 
         override fun onResponse(call: Call<ListaMesorregiao>, response: Response<ListaMesorregiao>) {
