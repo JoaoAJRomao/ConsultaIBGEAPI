@@ -7,7 +7,7 @@ data class ListaMesorregiao(
 data class Mesorregiao(
     val id: Int,
     val nome: String,
-    val uf: UF
+    val UF: UF
 )
 
 data class UF (

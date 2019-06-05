@@ -25,14 +25,25 @@ class MainActivity : AppCompatActivity() {
         val listaibge = ibgeService.getAllMesorregioes()
 
         listaibge.enqueue(ibgeCallbackHandler)
+
+//        ibgeService.getAllMesorregioes().enqueue(object: Callback<List<Mesorregiao>>{
+//            override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
+//                Log.i("Depuracao","Failure! We'll get'em next time: " + t.message)
+//            }
+//
+//            override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
+//                Log.i("Depuracao",response.body().toString())
+//            }
+//
+//        })
     }
 
-    private val ibgeCallbackHandler = object:Callback<ListaMesorregiao>{
-        override fun onFailure(call: Call<ListaMesorregiao>, t: Throwable) {
+    private val ibgeCallbackHandler = object:Callback<List<Mesorregiao>>{
+        override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
             Log.i("Depuracao","Failure! We'll get'em next time: " + t.message)
         }
 
-        override fun onResponse(call: Call<ListaMesorregiao>, response: Response<ListaMesorregiao>) {
+        override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
             Log.i("Depuracao",response.body().toString())
         }
     }

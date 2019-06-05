@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface IBGEService {
 
     @GET("localidades/mesorregioes")
-    fun getAllMesorregioes(): Call<ListaMesorregiao>
+    fun getAllMesorregioes(): Call<List<Mesorregiao>>
 
 }
