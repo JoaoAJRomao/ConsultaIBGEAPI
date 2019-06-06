@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import br.com.fimmbrasil.consultaibgeapi.R
 import br.com.fimmbrasil.consultaibgeapi.adapter.IBGEAdapter
 import br.com.fimmbrasil.consultaibgeapi.models.Mesorregiao
@@ -17,8 +19,9 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var ibgeService:IBGEService
+    private lateinit var ibgeService: IBGEService
     private lateinit var recyclerView: RecyclerView
+    private lateinit var editText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +29,15 @@ class MainActivity : AppCompatActivity() {
 
         ibgeService = RetrofitConfig.getIBGEService()
         recyclerView = findViewById(R.id.main_recyclerview)
-        recyclerView.layoutManager=LinearLayoutManager(applicationContext)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
+        editText = findViewById(R.id.main_editText)
+
+        editText.setOnClickListener(View.OnClickListener {
+            when{
+                editText.text.toString().equals("33")-> Log.i("SwitchCase","Tlinta e Tles!")
+            }
+        })
 
 
         val listaibge = ibgeService.getAllMesorregioes()
@@ -45,14 +56,14 @@ class MainActivity : AppCompatActivity() {
 //        })
     }
 
-    private val ibgeCallbackHandler = object:Callback<List<Mesorregiao>>{
+    private val ibgeCallbackHandler = object : Callback<List<Mesorregiao>> {
         override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
-            Log.i("Depuracao","Failure! We'll get'em next time: " + t.message)
+            Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
         }
 
         override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
-            Log.i("Depuracao",response.body().toString())
-            recyclerView.adapter=IBGEAdapter(applicationContext,response.body()!!.toList())
+            Log.i("Depuracao", response.body().toString())
+            recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
         }
     }
 }
