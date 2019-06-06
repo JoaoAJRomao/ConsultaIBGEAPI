@@ -1,9 +1,5 @@
 package br.com.fimmbrasil.consultaibgeapi.models
 
-data class ListaMesorregiao(
-    val lista:List<Mesorregiao>
-)
-
 data class Mesorregiao(
     val id: Int,
     val nome: String,

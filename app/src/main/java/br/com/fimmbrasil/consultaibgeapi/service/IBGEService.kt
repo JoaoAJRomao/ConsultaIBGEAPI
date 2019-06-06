@@ -1,6 +1,5 @@
 package br.com.fimmbrasil.consultaibgeapi.service
 
-import br.com.fimmbrasil.consultaibgeapi.models.ListaMesorregiao
 import br.com.fimmbrasil.consultaibgeapi.models.Mesorregiao
 import retrofit2.Call
 import retrofit2.http.GET
