@@ -36,7 +36,17 @@ class MainActivity : AppCompatActivity() {
 
         val listaibge = ibgeService.getAllMesorregioes()
 
-        listaibge.enqueue(ibgeCallbackHandler)
+//        listaibge.enqueue(ibgeCallbackHandler)
+        listaibge.enqueue(object : Callback<List<Mesorregiao>> {
+            override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
+                Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
+            }
+
+            override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
+                Log.i("Depuracao", response.body().toString())
+                recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
+            }
+        })
 
 
         editText.setOnClickListener(View.OnClickListener {
@@ -44,12 +54,14 @@ class MainActivity : AppCompatActivity() {
 //                editText.text.toString().equals("33")-> Log.i("SwitchCase","Tlinta e Tles!")
                 editText.text.toString().equals("33")->ibgeService.getMesorregiaoById(33).enqueue(object :Callback<UF>{
                     override fun onFailure(call: Call<UF>, t: Throwable) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        Log.i("DepuracaoTexto","Falhar na pesquisa")
+
                     }
 
                     override fun onResponse(call: Call<UF>, response: Response<UF>) {
-//                        recyclerView.adapter = IBGEAdapter(applicationContext,response.body())
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        Log.i("DepuracaoTexto","Chamada realizada")
+//                        recyclerView.adapter = IBGEAdapter(applicationContext,response.body().sigla.filter { "33" })
+
                     }
 
 
@@ -69,14 +81,14 @@ class MainActivity : AppCompatActivity() {
 //        })
     }
 
-    private val ibgeCallbackHandler = object : Callback<List<Mesorregiao>> {
-        override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
-            Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
-        }
-
-        override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
-            Log.i("Depuracao", response.body().toString())
-            recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
-        }
-    }
+//    private val ibgeCallbackHandler = object : Callback<List<Mesorregiao>> {
+//        override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
+//            Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
+//        }
+//
+//        override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
+//            Log.i("Depuracao", response.body().toString())
+//            recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
+//        }
+//    }
 }
