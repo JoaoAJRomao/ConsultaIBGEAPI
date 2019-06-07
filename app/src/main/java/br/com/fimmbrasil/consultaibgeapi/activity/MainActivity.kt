@@ -11,6 +11,7 @@ import android.widget.EditText
 import br.com.fimmbrasil.consultaibgeapi.R
 import br.com.fimmbrasil.consultaibgeapi.adapter.IBGEAdapter
 import br.com.fimmbrasil.consultaibgeapi.models.Mesorregiao
+import br.com.fimmbrasil.consultaibgeapi.models.UF
 import br.com.fimmbrasil.consultaibgeapi.service.IBGEService
 import br.com.fimmbrasil.consultaibgeapi.service.RetrofitConfig
 import retrofit2.Call
@@ -33,16 +34,28 @@ class MainActivity : AppCompatActivity() {
 
         editText = findViewById(R.id.main_editText)
 
-        editText.setOnClickListener(View.OnClickListener {
-            when{
-                editText.text.toString().equals("33")-> Log.i("SwitchCase","Tlinta e Tles!")
-            }
-        })
-
-
         val listaibge = ibgeService.getAllMesorregioes()
 
         listaibge.enqueue(ibgeCallbackHandler)
+
+
+        editText.setOnClickListener(View.OnClickListener {
+            when{
+//                editText.text.toString().equals("33")-> Log.i("SwitchCase","Tlinta e Tles!")
+                editText.text.toString().equals("33")->ibgeService.getMesorregiaoById(33).enqueue(object :Callback<UF>{
+                    override fun onFailure(call: Call<UF>, t: Throwable) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun onResponse(call: Call<UF>, response: Response<UF>) {
+//                        recyclerView.adapter = IBGEAdapter(applicationContext,response.body())
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+
+                })
+            }
+        })
 
 //        ibgeService.getAllMesorregioes().enqueue(object: Callback<List<Mesorregiao>>{
 //            override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
