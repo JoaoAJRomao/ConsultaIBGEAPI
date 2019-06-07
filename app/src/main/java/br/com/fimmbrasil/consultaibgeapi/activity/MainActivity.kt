@@ -29,11 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ibgeService = RetrofitConfig.getIBGEService()
-        recyclerView = findViewById(R.id.main_recyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-
-        editText = findViewById(R.id.main_editText)
+        ConfiguracaoMain()
 
         val listaibge = ibgeService.getAllMesorregioes()
 
@@ -48,32 +44,31 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         editText.setOnClickListener(View.OnClickListener {
-            if(editText.text.toString().equals("33")){
-                ibgeService.getMesorregiaoById(editText.text.toString().toInt()).enqueue(
-                    object : Callback<UF> {
-                        override fun onFailure(call: Call<UF>, t: Throwable) {
-                            Log.i("DepuracaoTexto", "Falhar na pesquisa")
-                        }
+            var listaUf = ibgeService.getAllEstados()
+            listaUf.enqueue(object : Callback<List<UF>> {
+                override fun onFailure(call: Call<List<UF>>, t: Throwable) {
+                    Log.i("onFailure", "Evento de clique não trouxe resultado =/ " + t.message)
+                }
 
-                        override fun onResponse(call: Call<UF>, response: Response<UF>) {
-                            Log.i("DepuracaoTexto", "Chamada realizada")
-                            recyclerView.adapter = UFAdapter(applicationContext, response.body() as UF)
+                override fun onResponse(call: Call<List<UF>>, response: Response<List<UF>>) {
+                    Log.i("onResponse", "Evento de clique trouxe resultados! " )
+                    for(i in response.body()!!.indices){
+                        if(editText.text.toString().equals(response.body()!![i].sigla)){
+                            Log.i("onResponse",response.body()!![i].toString())
                         }
-                    })
-            }else{
-                listaibge.clone().enqueue(object : Callback<List<Mesorregiao>> {
-                    override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
-                        Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
                     }
+                }
 
-                    override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
-                        Log.i("Depuracao", response.body().toString())
-                        recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
-                    }
-                })
-            }
+            })
         })
+
+    }
+
+    fun ConfiguracaoMain() {
+        ibgeService = RetrofitConfig.getIBGEService()
+        recyclerView = findViewById(R.id.main_recyclerview)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        editText = findViewById(R.id.main_editText)
     }
 }

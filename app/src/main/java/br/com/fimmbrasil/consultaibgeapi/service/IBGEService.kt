@@ -12,6 +12,9 @@ interface IBGEService {
     fun getAllMesorregioes(): Call<List<Mesorregiao>>
 
     @GET("localidades/estados/{UF}")
-    fun getMesorregiaoById(@Path("UF") uf:Int):Call<UF>
+    fun getMesorregiaoById(@Path("UF") uf: Int): Call<UF>
+
+    @GET("localidades/estados/")
+    fun getAllEstados(): Call<List<UF>>
 
 }
