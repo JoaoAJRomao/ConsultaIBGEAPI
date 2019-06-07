@@ -15,16 +15,18 @@ class UFAdapter(val contexto: Context, val uf: UF) : RecyclerView.Adapter<UFAdap
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UfViewHolder {
         val itemView = layoutInflater.inflate(R.layout.ufmesorregiao_adapter,p0,false)
         return UfViewHolder(itemView)
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getItemCount(): Int {
         return 1
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onBindViewHolder(p0: UfViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        p0.mesorregiaoId.text = uf.id.toString()
+        p0.mesorregiaoNome.text=uf.nome
+        p0.mesorregiaoUfSigla.text=uf.sigla
+        p0.mesorregiaoUfNome.text=uf.nome
+        p0.mesorregiaoUfRegiao.text=uf.regiao.nome
     }
 
     class UfViewHolder(item: View):RecyclerView.ViewHolder(item) {
