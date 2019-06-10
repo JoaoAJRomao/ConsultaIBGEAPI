@@ -32,19 +32,6 @@ class MainActivity : AppCompatActivity() {
 
         ConfiguracaoMain()
 
-        val listaibge = ibgeService.getAllMesorregioes()
-
-        /*listaibge.enqueue(object : Callback<List<Mesorregiao>> {
-            override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
-                Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
-            }
-
-            override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
-                Log.i("Depuracao", response.body().toString())
-                recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
-            }
-        })*/
-
         editText.setOnClickListener(View.OnClickListener {
             var listaUf = ibgeService.getAllEstados()
             if(editText.text.toString()!=""){
@@ -61,22 +48,10 @@ class MainActivity : AppCompatActivity() {
                                 Log.i("onResponse23",response.body()!!.get(i).toString())
                                 recyclerView.adapter = UFAdapter(applicationContext,response.body()!!.get(i))
                             }
-
                         }
                     }
-
                 })
             }else{
-                /*listaibge.clone().enqueue(object : Callback<List<Mesorregiao>> {
-                    override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
-                        Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
-                    }
-
-                    override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
-                        Log.i("Depuracao", response.body().toString())
-                        recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
-                    }
-                })*/
                 Toast.makeText(applicationContext,"Digite a UF!",Toast.LENGTH_SHORT).show()
             }
 
