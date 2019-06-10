@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import br.com.fimmbrasil.consultaibgeapi.R
 import br.com.fimmbrasil.consultaibgeapi.adapter.IBGEAdapter
 import br.com.fimmbrasil.consultaibgeapi.adapter.UFAdapter
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val listaibge = ibgeService.getAllMesorregioes()
 
-        listaibge.enqueue(object : Callback<List<Mesorregiao>> {
+        /*listaibge.enqueue(object : Callback<List<Mesorregiao>> {
             override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
                 Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
             }
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 Log.i("Depuracao", response.body().toString())
                 recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
             }
-        })
+        })*/
 
         editText.setOnClickListener(View.OnClickListener {
             var listaUf = ibgeService.getAllEstados()
@@ -62,14 +63,11 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         }
-                        /*if(editText.text.toString().equals("")){
-                        Log.i("onResponse23","Vazio")
-                        }*/
                     }
 
                 })
             }else{
-                listaibge.clone().enqueue(object : Callback<List<Mesorregiao>> {
+                /*listaibge.clone().enqueue(object : Callback<List<Mesorregiao>> {
                     override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
                         Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
                     }
@@ -78,7 +76,8 @@ class MainActivity : AppCompatActivity() {
                         Log.i("Depuracao", response.body().toString())
                         recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
                     }
-                })
+                })*/
+                Toast.makeText(applicationContext,"Digite a UF!",Toast.LENGTH_SHORT).show()
             }
 
         })
