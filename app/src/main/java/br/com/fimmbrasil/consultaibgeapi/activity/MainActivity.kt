@@ -46,31 +46,41 @@ class MainActivity : AppCompatActivity() {
 
         editText.setOnClickListener(View.OnClickListener {
             var listaUf = ibgeService.getAllEstados()
-            listaUf.enqueue(object : Callback<List<UF>> {
-                override fun onFailure(call: Call<List<UF>>, t: Throwable) {
-                    Log.i("onFailure", "Evento de clique NÃO trouxe resultado =/ " + t.message)
-                }
-
-                override fun onResponse(call: Call<List<UF>>, response: Response<List<UF>>) {
-                    Log.i("onResponse", "Evento de clique trouxe resultados! " )
-                    var listaTempo = mutableListOf<UF>()
-                    for(i in response.body()!!.indices){
-//                        Log.i("onResponse",response.body()!![i].toString())
-//                        listaTempo.add(response.body()!!.get(i))
-                        if(response.body()!!.get(i).sigla.equals(editText.text.toString())){
-                            Log.i("onResponse23",response.body()!!.get(i).toString())
-                        }
+            if(editText.text.toString()!=""){
+                listaUf.enqueue(object : Callback<List<UF>> {
+                    override fun onFailure(call: Call<List<UF>>, t: Throwable) {
+                        Log.i("onFailure", "Evento de clique NÃO trouxe resultado =/ " + t.message)
                     }
-                    /*for (i in listaTempo.indices){
-//                        Log.i("onResponse22",listaTempo.get(i).sigla)
-                        if(listaTempo.get(i).sigla.equals(editText.text.toString())){
-                            Log.i("onResponse22",listaTempo.get(i).toString())
+
+                    override fun onResponse(call: Call<List<UF>>, response: Response<List<UF>>) {
+                        Log.i("onResponse", "Evento de clique trouxe resultados! " )
+                        var listaTempo = mutableListOf<UF>()
+                        for(i in response.body()!!.indices){
+                            if(response.body()!!.get(i).sigla.equals(editText.text.toString())){
+                                Log.i("onResponse23",response.body()!!.get(i).toString())
+                                recyclerView.adapter = UFAdapter(applicationContext,response.body()!!.get(i))
+                            }
 
                         }
-                    }*/
-                }
+                        /*if(editText.text.toString().equals("")){
+                        Log.i("onResponse23","Vazio")
+                        }*/
+                    }
 
-            })
+                })
+            }else{
+                listaibge.clone().enqueue(object : Callback<List<Mesorregiao>> {
+                    override fun onFailure(call: Call<List<Mesorregiao>>, t: Throwable) {
+                        Log.i("Depuracao", "Failure! We'll get'em next time: " + t.message)
+                    }
+
+                    override fun onResponse(call: Call<List<Mesorregiao>>, response: Response<List<Mesorregiao>>) {
+                        Log.i("Depuracao", response.body().toString())
+                        recyclerView.adapter = IBGEAdapter(applicationContext, response.body()!!.toList())
+                    }
+                })
+            }
+
         })
 
     }
