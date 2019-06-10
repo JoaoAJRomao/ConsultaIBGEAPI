@@ -48,16 +48,26 @@ class MainActivity : AppCompatActivity() {
             var listaUf = ibgeService.getAllEstados()
             listaUf.enqueue(object : Callback<List<UF>> {
                 override fun onFailure(call: Call<List<UF>>, t: Throwable) {
-                    Log.i("onFailure", "Evento de clique não trouxe resultado =/ " + t.message)
+                    Log.i("onFailure", "Evento de clique NÃO trouxe resultado =/ " + t.message)
                 }
 
                 override fun onResponse(call: Call<List<UF>>, response: Response<List<UF>>) {
                     Log.i("onResponse", "Evento de clique trouxe resultados! " )
+                    var listaTempo = mutableListOf<UF>()
                     for(i in response.body()!!.indices){
-                        if(editText.text.toString().equals(response.body()!![i].sigla)){
-                            Log.i("onResponse",response.body()!![i].toString())
+//                        Log.i("onResponse",response.body()!![i].toString())
+//                        listaTempo.add(response.body()!!.get(i))
+                        if(response.body()!!.get(i).sigla.equals(editText.text.toString())){
+                            Log.i("onResponse23",response.body()!!.get(i).toString())
                         }
                     }
+                    /*for (i in listaTempo.indices){
+//                        Log.i("onResponse22",listaTempo.get(i).sigla)
+                        if(listaTempo.get(i).sigla.equals(editText.text.toString())){
+                            Log.i("onResponse22",listaTempo.get(i).toString())
+
+                        }
+                    }*/
                 }
 
             })
