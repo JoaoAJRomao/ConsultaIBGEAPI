@@ -6,4 +6,33 @@
     <string name="mesorregiao_uf_nome">UF Nome</string>
     <string name="mesorregiao_uf_regiao">Região da UF</string>
     <string name="dica">UF</string>
+    <string-array name="UnidadeFederativa">
+        <item>Rondônia</item>
+        <item>Acre</item>
+        <item>Amazonas</item>
+        <item>Roraima</item>
+        <item>Pará</item>
+        <item>Amapá</item>
+        <item>Tocantins</item>
+        <item>Maranhão</item>
+        <item>Piauí</item>
+        <item>Ceará</item>
+        <item>Rio Grande do Norte</item>
+        <item>Paraíba</item>
+        <item>Pernambuco</item>
+        <item>Alagoas</item>
+        <item>Sergipe</item>
+        <item>Bahia</item>
+        <item>Minas Gerais</item>
+        <item>Espírito Santo</item>
+        <item>Rio de Janeiro</item>
+        <item>São Paulo</item>
+        <item>Paraná</item>
+        <item>Santa Catarina</item>
+        <item>Rio Grande do Sul</item>
+        <item>Mato Grosso do Sul</item>
+        <item>Mato Grosso</item>
+        <item>Goiás</item>
+        <item>Distrito Federal</item>
+    </string-array>
 </resources>
