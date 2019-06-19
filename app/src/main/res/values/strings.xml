@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">ConsultaIBGEAPI</string>
-    <string name="mesorregiao_id">ID Mesorregiao</string>
-    <string name="mesorregiao_nome">Nome Mesorregiao</string>
-    <string name="mesorregiao_uf_sigla">Sigla UF</string>
-    <string name="mesorregiao_uf_nome">UF Nome</string>
-    <string name="mesorregiao_uf_regiao">Região da UF</string>
-    <string name="dica">UF</string>
+    <string name="mesorregiao_id">ID Mesorregiao:</string>
+    <string name="mesorregiao_nome">Nome Mesorregiao:</string>
+    <string name="mesorregiao_uf_sigla">Sigla UF:</string>
+    <string name="mesorregiao_uf_nome">UF Nome:</string>
+    <string name="mesorregiao_uf_regiao">Região da UF:</string>
+    <string name="dica">UF:</string>
     <string-array name="UnidadeFederativa">
         <item>Rondônia</item>
         <item>Acre</item>

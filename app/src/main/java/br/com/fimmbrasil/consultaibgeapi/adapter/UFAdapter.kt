@@ -13,7 +13,7 @@ class UFAdapter(val contexto: Context, val uf: UF) : RecyclerView.Adapter<UFAdap
     private val layoutInflater = contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UfViewHolder {
-        val itemView = layoutInflater.inflate(R.layout.ufmesorregiao_adapter,p0,false)
+        val itemView = layoutInflater.inflate(R.layout.cardview,p0,false)
         return UfViewHolder(itemView)
     }
 
@@ -25,7 +25,7 @@ class UFAdapter(val contexto: Context, val uf: UF) : RecyclerView.Adapter<UFAdap
         p0.mesorregiaoId.text = uf.id.toString()
         p0.mesorregiaoNome.text=uf.nome
         p0.mesorregiaoUfSigla.text=uf.sigla
-        p0.mesorregiaoUfNome.text=uf.nome
+
         p0.mesorregiaoUfRegiao.text=uf.regiao.nome
     }
 
@@ -33,14 +33,14 @@ class UFAdapter(val contexto: Context, val uf: UF) : RecyclerView.Adapter<UFAdap
         var mesorregiaoId: TextView
         var mesorregiaoNome: TextView
         var mesorregiaoUfSigla: TextView
-        var mesorregiaoUfNome: TextView
+
         var mesorregiaoUfRegiao: TextView
 
         init {
             this.mesorregiaoId=item.findViewById(R.id.messoregiao_id)
             this.mesorregiaoNome=item.findViewById(R.id.mesorregiao_nome)
             this.mesorregiaoUfSigla=item.findViewById(R.id.mesorregiao_uf_sigla)
-            this.mesorregiaoUfNome=item.findViewById(R.id.mesorregiao_uf_nome)
+
             this.mesorregiaoUfRegiao=item.findViewById(R.id.mesorregiao_uf_regiao)
         }
 

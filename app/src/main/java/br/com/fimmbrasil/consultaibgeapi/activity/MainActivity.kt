@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity(){
 
         var unidadesFederativas = arrayOf("Rondônia","Acre","Amazonas","Roraima","Pará","Amapá","Tocantins","Maranhão","Piauí","Ceará","Rio Grande do Norte","Paraíba","Pernambuco","Alagoas","Sergipe","Bahia","Minas Gerais","Espírito Santo","Rio de Janeiro","São Paulo","Paraná","Santa Catarina","Rio Grande do Sul","Mato Grosso do Sul","Mato Grosso","Goiás","Distrito Federal")
 
+
         if(spinner!=null){
             val arrayAdapterUnidadeFederativa = ArrayAdapter(this,android.R.layout.simple_spinner_item, unidadesFederativas)
             spinner.adapter = arrayAdapterUnidadeFederativa
